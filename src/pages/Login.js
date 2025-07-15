@@ -14,7 +14,7 @@ function Login() {
   useEffect(() => {
     const fetchCaptcha = async () => {
       try {
-        const response = await axios.get('http://54.144.143.116:5000/captcha', { responseType: 'blob' });
+        const response = await axios.get('http://54.144.143.116:5000/generate-captcha', { responseType: 'blob' });
         
         // Crear una URL del objeto blob
         const imageUrl = URL.createObjectURL(response.data);
