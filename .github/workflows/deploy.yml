@@ -19,6 +19,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Set up Node.js and install dependencies
+      run: |
+        # Instala Node.js y npm
+        curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+        sudo apt-get install -y nodejs
+
+        # Instala las dependencias del proyecto
+        npm install
+
     - name: Build Docker images for frontend
       run: |
         docker build -t galo12/my-react-app2 .
