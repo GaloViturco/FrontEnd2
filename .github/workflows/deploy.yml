@@ -21,12 +21,12 @@ jobs:
 
     - name: Build Docker images for frontend
       run: |
-        docker build -t galo12/my-react-app .
+        docker build -t galo12/my-react-app2 .
 
     - name: Push images to Docker Hub
       run: |
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker push galo12/my-react-app
+        docker push galo12/my-react-app2
 
     - name: Deploy services to EC2
       uses: appleboy/ssh-action@v1.0.0
@@ -35,9 +35,9 @@ jobs:
         username: ec2-user
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
-          docker stop my-react-app || true
-          docker rm my-react-app || true
+          docker stop my-react-app2 || true
+          docker rm my-react-app2 || true
 
-          docker pull galo12/my-react-app
+          docker pull galo12/my-react-app2
 
-          docker run -d --name my-react-app -p 80:80 --restart unless-stopped galo12/my-react-app
+          docker run -d --name my-react-app2 -p 80:80 --restart unless-stopped galo12/my-react-app2
