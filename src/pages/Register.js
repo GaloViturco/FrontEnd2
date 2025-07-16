@@ -21,7 +21,7 @@ function Register() {
 
   const handleRegister = async () => {
     try {
-      const res = await axios.post('http://54.144.143.116/api/register', {
+      const res = await axios.post('http://54.144.143.116/api/register', { //Ruta Apigateway
         email,
         password
       });
