@@ -43,10 +43,15 @@ function Login() {
     }
   };
 
-  return (
+ return (
     <div className="login-container">
+      {/* Logo fuera del contenedor del formulario */}
+      <div className="login-logo">
+        <img src="logo.gif" alt="Logo Barbería" className="logo-image" />
+      </div>
+
       <div className="login-box">
-        <h2 className="login-title">Iniciar sesión </h2>
+        <h2 className="login-title">Iniciar sesión</h2>
 
         <input
           type="text"
