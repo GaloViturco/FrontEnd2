@@ -25,7 +25,7 @@ function AgendarCita() {
     }
 
     try {
-      const response = await fetch('http://54.173.45.60/api/cita', {
+      const response = await fetch('http://3.218.197.27/api/cita', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
