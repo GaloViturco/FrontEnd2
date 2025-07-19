@@ -14,7 +14,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchCurrentTime = async () => {
       try {
-        const response = await fetch('http://54.144.95.86:5001/current-time');
+        const response = await fetch('http://98.85.244.110:5001/current-time');
         const data = await response.json();
         if (data && data.current_time) {
           setCurrentTime(data.current_time);
