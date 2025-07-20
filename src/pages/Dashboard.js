@@ -10,22 +10,34 @@ function Dashboard() {
   const [profilePic, setProfilePic] = useState(null);
   const [currentTime, setCurrentTime] = useState(''); // Estado para la hora
 
-  // Obtener la hora del microservicio
-  useEffect(() => {
-    const fetchCurrentTime = async () => {
-      try {
-        const response = await fetch('http://98.85.244.110:5001/current-time');
-        const data = await response.json();
-        if (data && data.current_time) {
-          setCurrentTime(data.current_time);
+// Obtener la hora del microservicio GraphQL
+useEffect(() => {
+  const fetchCurrentTime = async () => {
+    try {
+      const query = `
+        query {
+          currentTime
         }
-      } catch (error) {
-        console.error('Error al obtener la hora:', error);
-      }
-    };
+      `;
 
-    fetchCurrentTime();
-  }, []);
+      const response = await fetch('http://98.85.244.110:8000/graphql', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query }),
+      });
+
+      const result = await response.json();
+      if (result && result.data && result.data.currentTime) {
+        setCurrentTime(result.data.currentTime);
+      }
+    } catch (error) {
+      console.error('Error al obtener la hora desde GraphQL:', error);
+    }
+  };
+
+  fetchCurrentTime();
+}, []);
+
 
   // Obtener el email del token
   useEffect(() => {
